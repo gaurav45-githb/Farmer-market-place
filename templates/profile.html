@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %} My Main Page {% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/profile.css')}}">
+{% endblock %}
+
+{% block content %}
+
+    <!-- Dashboard -->
+    <div class="dashboard">
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <a href="{{url_for('dashboard')}}">Dashboard</a>
+            <a href="{{url_for('addproduct')}}">Add Product</a>
+            <a href="{{url_for('products')}}">View Products</a>
+            <a href="{{url_for('logout')}}">Logout</a>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <h2>Welcome, Farmer </h2>
+            <p>Manage your products easily from here.</p>
+
+            <div class="card-container">
+                <div class="card">
+                    <h3>Add Product</h3>
+                    <p>Add new farm products.</p>
+                    <a href="{{url_for('addproduct')}}">Add</a>
+                </div>
+
+                <div class="card">
+                    <h3>View Products</h3>
+                    <p>See all listed products.</p>
+                    <a href="{{url_for('products')}}">View</a>
+                </div>
+
+                <!-- <div class="card">
+                    <h3>My Profile</h3>
+                    <p>Update your details.</p>
+                    <a href="#">Open</a>
+                </div> -->
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

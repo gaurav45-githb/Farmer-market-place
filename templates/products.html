@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %} All Products {% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/products.css')}}">
+{% endblock %}
+
+{% block content %}
+<h2>Available Products</h2>
+
+<div class="product-container">
+    <div class="product-card">
+        <img src="{{ url_for('static', filename='uploads/carrot_static.jpg') }}">
+        <div class="product-info">
+            <h3>Carrot</h3>
+            <p>Organic and fresh</p>
+            <p class="price">40rs/kg</p>
+            <a href="tel:" class="contact-btn">Contact Farmer</a>
+        </div>
+    </div>
+
+    <div class="product-card">
+        <img src="{{ url_for('static', filename='uploads/egg_static.jpg') }}">
+        <div class="product-info">
+            <h3>Eggs</h3>
+            <p>fresh and organic village eggs</p>
+            <p class="price">10rs/piece</p>
+            <a href="tel:" class="contact-btn">Contact Farmer</a>
+        </div>
+    </div>
+
+    {% for p in products %}
+    <div class="product-card">
+        <img src="{{ url_for('static', filename='uploads/' + p.image) }}">
+        <div class="product-info">
+            <h3>{{p.pname}}</h3>
+            <p>{{p.des}}</p>
+            <p class="price">{{p.price}} Rs</p>
+            <p>Mno : {{p.contact}} </p>
+            <a href="tel: {{p.contact}}" class="contact-btn">Contact Farmer</a>
+        </div>
+    </div>
+
+    {% endfor %}
+    <a href="/addproduct">
+        <div class="add-button">
+            <button type="button">Add Your Own Product</button>
+        </div>
+
+    </a>
+</div>
+{% endblock %}

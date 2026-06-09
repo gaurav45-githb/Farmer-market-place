@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %} Add Products {% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/addproduct.css')}}">
+{% endblock %}
+
+{% block content %}
+
+<form action="/addproduct" method="POST" enctype="multipart/form-data">
+    <label for="name">Product name</label>
+    <input type="text" name="pname" placeholder="Product Name" required>
+    <label for="price">Price</label>
+    <input type="number" name="price" placeholder="Price Rs" required>
+    <label for="contact">Mobail Number</label>
+    <input type="number" name="contact" placeholder="Mobail Number" required>
+    <input type="file" name="image" required>
+    <input type="text" name="desc" placeholder="Enter about product" required>
+    <label for="category">Select Product Category</label>
+    <select name="category">
+
+        <option value="vegetables">Vegetables</option>
+        <option value="fruits">Fruits</option>
+        <option value="crops">Crops</option>
+        <option value="eggs">Eggs</option>
+        <option value="cattle">Cattel</option>
+        <option value="goat">Goat</option>
+
+
+    </select>
+    <button type="submit">Add Product</button>
+</form>
+
+{% endblock %}

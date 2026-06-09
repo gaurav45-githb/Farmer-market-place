@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %} My Main Page {% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">
+{% endblock %}
+
+{% block content %}
+<div class="main">
+	<span>Helping Farmer for Sell</span>
+	<span>Agriculture Product</span>
+	<span>Online</span>
+</div>
+<!-- {% if "user" in session %} -->
+<!-- <h3>Welcome {{ session['user.name'] }}</h3> -->
+
+<!-- {% else %}
+
+<div style="text-align:center;">
+	<a href="{{url_for('login')}}"><button class="button">Login</button></a>
+	<a href="{{url_for('register')}}"><button class="button">Register</button></a>
+
+</div> -->
+<!-- {% endif %} -->
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+    {% for category, message in messages %}
+        <div class="flash {{ category }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+{% endwith %}
+
+
+
+<h2 class="Heading2">Categories</h2>
+
+<div class="categories-container">
+	<a href="/category/vegetables">
+		<div class="categories">
+			<span>Vegetables</span>
+			<img src="https://cdn.britannica.com/17/196817-050-6A15DAC3/vegetables.jpg">
+		</div>
+	</a>
+
+	<a href="/category/crops">
+		<div class="categories">
+			<span>Crops</span>
+			<img
+				src="https://thumbs.dreamstime.com/b/vegetable-garden-mixed-crops-shafts-savory-cabbage-tagetes-low-beans-peas-pulses-often-combined-77487214.jpg">
+		</div>
+	</a>
+
+	<a href="/category/eggs">
+		<div class="categories">
+			<span>Eggs</span>
+			<img src="https://cdn.britannica.com/94/151894-050-F72A5317/Brown-eggs.jpg">
+		</div>
+	</a>
+
+	<a href="/category/fruits">
+		<div class="categories">
+			<span>Fruits</span>
+			<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToKoEpf91EXivIS0yVxoeW_WNLsfyAcf7gtQ&s">
+		</div>
+	</a>
+
+	<a href="/category/cattle">
+		<div class="categories">
+			<span>Cattle</span>
+			<img src="https://cdn.britannica.com/53/157153-050-E5582B5A/Holstein-cow.jpg">
+		</div>
+	</a>
+
+	<a href="/category/goats">
+		<div class="categories">
+			<span>Goats</span>
+			<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbL_CglUlWLL2eRNQNws2BS6KkX5MZTay5gg&s">
+		</div>
+	</a>
+</div>
+
+<div class="works">
+	<h2>How it works </h2>
+	<p>Farmer registers <br>
+		Farmer uploads product <br>
+		Customer views product <br>
+		Customer contacts farmer <br>
+	</p>
+</div>
+{% endblock %}

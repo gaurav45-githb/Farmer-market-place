@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Base</title>
+    {% block extra_css %}{% endblock %}
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            background-color: rgba(192, 205, 25, 0.89);
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 30px;
+            padding: 15px 30px;
+            margin: 10px;
+            border-radius: 10px;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+
+        .header div {
+            cursor: pointer;
+            padding: 8px 12px;
+        }
+
+        .nav-item:hover {
+            background-color: white;
+            color: black;
+            border-radius: 10px;
+        }
+
+        .search-box input {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            width: 200px;
+            font-size: 14px;
+        }
+
+        footer {
+            background-color: #1c1b1bd8;
+            width: 100%;
+            /* height: 30%; */
+        }
+
+        .moreinfo {
+            background-color: #1b1a1ad8;
+            width: 100%;
+            height: 50px;
+            color: white;
+            font-size: 30px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        footer h3 {
+            padding-bottom: 7px;
+        }
+
+        .about {
+            color: rgb(235, 223, 223);
+            display: flex;
+            padding: 20px;
+            margin-left: 20px;
+            font-weight: 600;
+            font-size: 15px;
+            justify-content: center;
+        }
+
+        .about-box1,
+        .about-box2,
+        .about-box3,
+        .about-box4 {
+            width: 300px;
+
+        }
+
+        footer ul li {
+            padding: 5px;
+        }
+
+        footer h3 {
+            font-size: 24px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="search-box">
+            <input type="text" placeholder="Search products...">
+        </div>
+        <div class="nav-item"><a href="{{url_for('main')}}" style="text-decoration: none; color: black;">Home</a></div>
+        <div class="nav-item"><a href="{{url_for('products')}}" style="text-decoration: none; color: black;">All
+                Products</a></div>
+        <div class="nav-item"><a href="{{url_for('contact')}}" style="text-decoration: none; color: black;">Contact
+                US</a>
+        </div>
+        {% if "user" in session %}
+        <div class="nav-item"><a href="{{url_for('profile')}}" style="text-decoration: none; color: black;">Profile</a>
+        </div>
+        {% else %}
+        <div class="nav-item"><a href="{{url_for('login')}}" style="text-decoration: none; color: black;">Login</a>
+        </div>
+        <div class="nav-item"><a href="{{url_for('register')}}"
+                style="text-decoration: none; color: black;">Register</a>
+        </div>
+        {% endif %}
+
+        <!-- <div class="nav-item"><a href="{{url_for('register')}}"
+                style="text-decoration: none; color: black;">Register</a></div> -->
+    </header>
+    <main> <br>
+        {% block content %}{% endblock %}
+    </main> <br>
+    <footer>
+        <div class="moreinfo">More info</div>
+        <div class="about">
+            <div class="about-box1">
+                <ul type="none">
+                    <h3>Categories</h3>
+                    <li>Vegetables</li>
+                    <li>Crops</li>
+                    <li>Eggs</li>
+                    <li>Fruits</li>
+                    <li>Cattel</li>
+                    <li>Goat</li>
+                </ul>
+            </div>
+            <div class="about-box2">
+                <ul type="none">
+                    <h3>About Us</h3>
+                    <a href="https://wa.link/d45as0" style="text-decoration: none; color: rgb(235, 223, 223);">
+                        <li>Contact</li>
+                    </a>
+
+                    <a href="mailto:mr.gaurav8500@gmail.com" style="text-decoration: none; color: rgb(235, 223, 223);">
+                        <li>Email</li>
+                    </a>
+                    <li>Location</li>
+                    <a href="https://wa.link/d45as0" style="text-decoration: none; color: rgb(235, 223, 223);">
+                        <li>Whatsapp</li>
+                    </a>
+
+                </ul>
+            </div>
+            <div class="about-box3">
+                <ul type="none">
+                    <h3>Access</h3>
+                    <a href="{{url_for('addproduct')}}" style="text-decoration: none; color: rgb(235, 223, 223);">
+                        <li>List your product</li>
+                    </a>
+                    <a href="{{url_for('products')}}" style="text-decoration: none; color: rgb(235, 223, 223);">
+                        <li>See all Products</li>
+                    </a>
+                    <a href="{{url_for('register')}}" style="text-decoration: none; color: rgb(235, 223, 223);">
+                        <li>Join with us </li>
+                    </a>
+                </ul>
+            </div>
+            <div class="about-box4">
+                <ul type="none">
+                    <h3>Why choose us</h3>
+                    <li>Direct from farmers</li>
+                    <li>Fresh products</li>
+                    <li> No middleman</li>
+                    <li> Affordable price</li>
+                </ul>
+            </div>
+        </div>
+        <p>© 2026 Farmer Market | made by Gaurav</p>
+
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %} Dashboard page {% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/dashboard.css')}}">
+{% endblock %}
+
+{% block content %}
+
+<div class="dashboard-container">
+
+    <h2 class="dashboard-title">Farmer Dashboard</h2>
+
+    <!-- Farmer Info -->
+
+    <div class="farmer-card">
+        <h3>Farmer Information</h3>
+
+        <p><b>Name:</b> {{ user.name }}</p>
+        <p><b>Email:</b> {{ user.email }}</p>
+        <p><b>Contact No:</b> {{ user.mno }}</p>
+
+
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="flash {{ category }}">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <div class="product-container">
+        {% for p in products %}
+        <div class="product-card">
+            <img src="{{ url_for('static', filename='uploads/' + p.image) }}">
+            <div class="product-info">
+                <h3>{{p.pname}}</h3>
+                <p>{{p.des}}</p>
+                <p class="price">{{p.price}} Rs</p>
+                <p>Mno : {{p.contact}} </p>
+                <a href="tel: {{p.contact}}" class="contact-btn">Contact Farmer</a>
+                <a href="/delete_product/{{p.id}}" class="contact-btn">Delete Product</a>
+
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+
+    <a href="/addproduct">
+        <div class="add-button">
+            <button type="button">Add Product</button>
+        </div>
+
+    </a>
+
+    {% endblock %}

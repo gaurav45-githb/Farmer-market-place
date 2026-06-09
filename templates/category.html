@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %} Category page {% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/category.css')}}">
+{% endblock %}
+
+{% block content %}
+<div class="product-container">
+    {% for p in products %}
+    <div class="product-card">
+        <img src="{{ url_for('static', filename='uploads/' + p.image) }}">
+        <div class="product-info">
+            <h3>{{p.pname}}</h3>
+            <p>{{p.des}}</p>
+            <p class="price">{{p.price}} Rs</p>
+            <p>Mno : {{p.contact}} </p>
+            <a href="tel: {{p.contact}}" class="contact-btn">Contact Farmer</a>
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+
+<a href="/addproduct">
+    <div class="add-button">
+        <button type="button">Add Your Own Product</button>
+    </div>
+
+</a>
+
+{% endblock %}
